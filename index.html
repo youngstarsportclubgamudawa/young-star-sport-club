@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Young Star Sport Club | තරුණ තරු ක්‍රීඩා සමාජය</title>
+  <!-- Font Awesome & Google Fonts -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Abhaya+Libre:wght@400;700&family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', 'Abhaya Libre', sans-serif;
+    }
+
+    body {
+      background: linear-gradient(145deg, #f8f9fc 0%, #e9eef4 100%);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 1.5rem;
+    }
+
+    .app-card {
+      max-width: 1200px;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-radius: 2.5rem;
+      box-shadow: 0 30px 50px -20px rgba(0, 20, 40, 0.3), 0 8px 20px rgba(0, 0, 0, 0.05);
+      padding: 2rem 2.2rem 2.2rem;
+      border: 1px solid rgba(255, 255, 255, 0.6);
+      transition: all 0.3s;
+    }
+
+    /* header section */
+    .club-header {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.8rem;
+      gap: 1rem;
+    }
+
+    .logo-area {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .logo-icon {
+      background: #1e2f4e;
+      color: #f9c74f;
+      width: 55px;
+      height: 55px;
+      border-radius: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      box-shadow: 0 8px 14px -6px rgba(0, 0, 0, 0.2);
+    }
+
+    .club-title {
+      font-size: 1.9rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: #0b1e2f;
+      line-height: 1.2;
+    }
+
+    .club-title span {
+      display: block;
+      font-size: 1rem;
+      font-weight: 400;
+      color: #4a5b6b;
+      margin-top: 0.2rem;
+      letter-spacing: 0.3px;
+    }
+
+    .lang-toggle {
+      background: white;
+      border: 1px solid #cddae9;
+      border-radius: 40px;
+      padding: 0.4rem 0.8rem;
+      display: flex;
+      gap: 0.2rem;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.02);
+    }
+
+    .lang-btn {
+      background: transparent;
+      border: none;
+      padding: 0.6rem 1.2rem;
+      border-radius: 30px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: all 0.2s;
+      color: #3a4b5c;
+    }
+
+    .lang-btn.active {
+      background: #1e2f4e;
+      color: white;
+      box-shadow: 0 6px 12px -6px #1e2f4e;
+    }
+
+    .lang-btn i {
+      margin-right: 6px;
+      font-size: 0.9rem;
+    }
+
+    /* card grid */
+    .dashboard {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.8rem;
+      margin-bottom: 2rem;
+    }
+
+    @media (max-width: 750px) {
+      .dashboard {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+
+      .club-title {
+        font-size: 1.5rem;
+      }
+    }
+
+    .info-panel {
+      background: white;
+      border-radius: 2rem;
+      padding: 1.6rem 1.8rem;
+      box-shadow: 0 12px 24px -12px rgba(0, 0, 0, 0.15);
+      border: 1px solid rgba(255, 255, 255, 0.8);
+      transition: transform 0.2s;
+    }
+
+    .info-panel:hover {
+      transform: translateY(-2px);
+    }
+
+    .panel-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 700;
+      font-size: 1.3rem;
+      color: #1e2f4e;
+      margin-bottom: 1.5rem;
+      border-bottom: 2px dashed #d0deed;
+      padding-bottom: 0.8rem;
+    }
+
+    .panel-title i {
+      background: #eef3f9;
+      padding: 8px;
+      border-radius: 12px;
+      color: #1e2f4e;
+      font-size: 1.1rem;
+    }
+
+    /* charges rows */
+    .charge-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.9rem 0;
+      border-bottom: 1px solid #ecf2f8;
+      font-weight: 500;
+    }
+
+    .charge-row:last-child {
+      border-bottom: none;
+    }
+
+    .charge-label {
+      color: #2d4055;
+    }
+
+    .charge-value {
+      font-weight: 700;
+      color: #0b1e2f;
+      background: #f0f6fe;
+      padding: 0.3rem 1rem;
+      border-radius: 30px;
+      font-size: 1.1rem;
+    }
+
+    .charge-value small {
+      font-size: 0.75rem;
+      font-weight: 400;
+      color: #5b6f82;
+    }
+
+    /* events list */
+    .event-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      padding: 1rem 0;
+      border-bottom: 1px solid #ecf2f8;
+    }
+
+    .event-item:last-child {
+      border-bottom: none;
+    }
+
+    .event-date {
+      background: #1e2f4e;
+      color: white;
+      border-radius: 16px;
+      padding: 0.5rem 0.9rem;
+      text-align: center;
+      min-width: 70px;
+      box-shadow: 0 6px 10px -4px #1e2f4e70;
+    }
+
+    .event-date .day {
+      font-size: 1.5rem;
+      font-weight: 800;
+      line-height: 1.1;
+    }
+
+    .event-date .month {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      opacity: 0.9;
+    }
+
+    .event-details {
+      flex: 1;
+    }
+
+    .event-name {
+      font-weight: 700;
+      color: #0e1e2e;
+      margin-bottom: 0.3rem;
+      font-size: 1.05rem;
+    }
+
+    .event-location {
+      font-size: 0.85rem;
+      color: #5c6f82;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .event-location i {
+      font-size: 0.75rem;
+      color: #7b8fa3;
+    }
+
+    /* google drive & sheet connection */
+    .cloud-section {
+      margin-top: 1.2rem;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      background: #f1f7fe;
+      border-radius: 60px;
+      padding: 0.9rem 1.8rem;
+      border: 1px solid #cddff0;
+    }
+
+    .cloud-label {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 600;
+      color: #1e2f4e;
+      font-size: 0.95rem;
+    }
+
+    .cloud-label i {
+      font-size: 1.4rem;
+      color: #1e2f4e;
+    }
+
+    .cloud-buttons {
+      display: flex;
+      gap: 0.8rem;
+    }
+
+    .cloud-btn {
+      background: white;
+      border: none;
+      padding: 0.6rem 1.2rem;
+      border-radius: 40px;
+      font-weight: 600;
+      font-size: 0.85rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 6px 12px -6px rgba(0, 0, 0, 0.1);
+      cursor: pointer;
+      transition: all 0.2s;
+      color: #1e2f4e;
+      border: 1px solid #cfddee;
+    }
+
+    .cloud-btn i {
+      font-size: 1rem;
+    }
+
+    .cloud-btn:hover {
+      background: #1e2f4e;
+      color: white;
+      border-color: #1e2f4e;
+    }
+
+    .cloud-btn.google-drive:hover {
+      background: #0f9d58;
+      border-color: #0f9d58;
+    }
+
+    .cloud-btn.google-sheet:hover {
+      background: #0f9d58;
+      border-color: #0f9d58;
+    }
+
+    .status-badge {
+      font-size: 0.75rem;
+      background: #e0f0e6;
+      color: #0e6b3e;
+      border-radius: 30px;
+      padding: 0.25rem 0.8rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-weight: 500;
+    }
+
+    .footer-note {
+      margin-top: 1.8rem;
+      text-align: center;
+      font-size: 0.8rem;
+      color: #7e91a5;
+      border-top: 1px solid #dce5ef;
+      padding-top: 1.2rem;
+    }
+
+    .footer-note i {
+      color: #f9c74f;
+    }
+
+    /* sinhala font override */
+    .sinhala-active .club-title,
+    .sinhala-active .panel-title,
+    .sinhala-active .charge-label,
+    .sinhala-active .charge-value,
+    .sinhala-active .event-name,
+    .sinhala-active .event-location,
+    .sinhala-active .cloud-label,
+    .sinhala-active .cloud-btn,
+    .sinhala-active .footer-note {
+      font-family: 'Abhaya Libre', 'Inter', sans-serif;
+    }
+
+    /* small adjustments */
+    .event-list {
+      max-height: 280px;
+      overflow-y: auto;
+      padding-right: 6px;
+    }
+
+    .event-list::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    .event-list::-webkit-scrollbar-track {
+      background: #eef3f9;
+      border-radius: 10px;
+    }
+
+    .event-list::-webkit-scrollbar-thumb {
+      background: #b7c9dd;
+      border-radius: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="app-card" id="appCard">
+    <!-- HEADER -->
+    <div class="club-header">
+      <div class="logo-area">
+        <div class="logo-icon">
+          <i class="fas fa-futbol"></i>
+        </div>
+        <div class="club-title" id="clubName">
+          Young Star Sport Club
+          <span id="clubSub">යොවුන් තරු ක්‍රීඩා සමාජය</span>
+        </div>
+      </div>
+      <div class="lang-toggle">
+        <button class="lang-btn active" id="langEnBtn" data-lang="en">
+          <i class="fas fa-language"></i> English
+        </button>
+        <button class="lang-btn" id="langSiBtn" data-lang="si">
+          <i class="fas fa-language"></i> සිංහල
+        </button>
+      </div>
+    </div>
+
+    <!-- DASHBOARD: CHARGES + EVENTS -->
+    <div class="dashboard">
+      <!-- WEEKLY CHARGES -->
+      <div class="info-panel">
+        <div class="panel-title">
+          <i class="fas fa-money-bill-wave"></i>
+          <span id="chargesTitle">Weekly Membership Charges</span>
+        </div>
+        <div class="charge-row">
+          <span class="charge-label" id="chargeLabel1">Youth (Under 18)</span>
+          <span class="charge-value" id="chargeValue1">Rs. 800 <small>/ week</small></span>
+        </div>
+        <div class="charge-row">
+          <span class="charge-label" id="chargeLabel2">Adult (18+)</span>
+          <span class="charge-value" id="chargeValue2">Rs. 1,200 <small>/ week</small></span>
+        </div>
+        <div class="charge-row">
+          <span class="charge-label" id="chargeLabel3">Family (2 adults + 2 kids)</span>
+          <span class="charge-value" id="chargeValue3">Rs. 2,800 <small>/ week</small></span>
+        </div>
+        <div class="charge-row">
+          <span class="charge-label" id="chargeLabel4">Senior Citizen (65+)</span>
+          <span class="charge-value" id="chargeValue4">Rs. 600 <small>/ week</small></span>
+        </div>
+        <div class="charge-row" style="margin-top: 6px; border-top: 2px dashed #d0deed;">
+          <span class="charge-label" id="chargeLabelNote"><i class="fas fa-check-circle" style="color:#2e7d32;"></i> No hidden fees</span>
+          <span class="charge-value" style="background: transparent; font-size:0.9rem; color:#2e7d32;" id="chargeNoteValue">All equipment included</span>
+        </div>
+      </div>
+
+      <!-- UPCOMING EVENTS -->
+      <div class="info-panel">
+        <div class="panel-title">
+          <i class="fas fa-calendar-alt"></i>
+          <span id="eventsTitle">Upcoming Events</span>
+        </div>
+        <div class="event-list" id="eventList">
+          <!-- Event 1 -->
+          <div class="event-item">
+            <div class="event-date">
+              <div class="day">15</div>
+              <div class="month">Jun</div>
+            </div>
+            <div class="event-details">
+              <div class="event-name" id="event1Name">Inter‑Club Football Match</div>
+              <div class="event-location"><i class="fas fa-map-pin"></i> <span id="event1Loc">City Stadium, Ground 2</span></div>
+            </div>
+          </div>
+          <!-- Event 2 -->
+          <div class="event-item">
+            <div class="event-date">
+              <div class="day">22</div>
+              <div class="month">Jun</div>
+            </div>
+            <div class="event-details">
+              <div class="event-name" id="event2Name">Junior Athletics Meet</div>
+              <div class="event-location"><i class="fas fa-map-pin"></i> <span id="event2Loc">Club Grounds – Track</span></div>
+            </div>
+          </div>
+          <!-- Event 3 -->
+          <div class="event-item">
+            <div class="event-date">
+              <div class="day">05</div>
+              <div class="month">Jul</div>
+            </div>
+            <div class="event-details">
+              <div class="event-name" id="event3Name">Annual Swimming Gala</div>
+              <div class="event-location"><i class="fas fa-map-pin"></i> <span id="event3Loc">Aquatic Centre, Colombo</span></div>
+            </div>
+          </div>
+          <!-- Event 4 -->
+          <div class="event-item">
+            <div class="event-date">
+              <div class="day">19</div>
+              <div class="month">Jul</div>
+            </div>
+            <div class="event-details">
+              <div class="event-name" id="event4Name">Coaching Clinic with Pros</div>
+              <div class="event-location"><i class="fas fa-map-pin"></i> <span id="event4Loc">Indoor Training Hall</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- GOOGLE DRIVE & SHEET CONNECTION -->
+    <div class="cloud-section">
+      <div class="cloud-label">
+        <i class="fas fa-cloud"></i>
+        <span id="cloudLabelText">Connect with Google</span>
+        <span class="status-badge"><i class="fas fa-circle" style="font-size: 0.4rem; color: #0f9d58;"></i> ready</span>
+      </div>
+      <div class="cloud-buttons">
+        <button class="cloud-btn google-drive" id="driveBtn">
+          <i class="fab fa-google-drive"></i> <span id="driveBtnText">Google Drive</span>
+        </button>
+        <button class="cloud-btn google-sheet" id="sheetBtn">
+          <i class="fas fa-table"></i> <span id="sheetBtnText">Google Sheet</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- FOOTER / INFO -->
+    <div class="footer-note" id="footerNote">
+      <i class="fas fa-star"></i> Young Star Sport Club – empowering athletes since 2010 <i class="fas fa-star"></i>
+    </div>
+  </div>
+
+  <script>
+    (function() {
+      // ----- TRANSLATIONS -----
+      const translations = {
+        en: {
+          clubName: "Young Star Sport Club",
+          clubSub: "යොවුන් තරු ක්‍රීඩා සමාජය",
+          chargesTitle: "Weekly Membership Charges",
+          chargeLabel1: "Youth (Under 18)",
+          chargeValue1: "Rs. 800 <small>/ week</small>",
+          chargeLabel2: "Adult (18+)",
+          chargeValue2: "Rs. 1,200 <small>/ week</small>",
+          chargeLabel3: "Family (2 adults + 2 kids)",
+          chargeValue3: "Rs. 2,800 <small>/ week</small>",
+          chargeLabel4: "Senior Citizen (65+)",
+          chargeValue4: "Rs. 600 <small>/ week</small>",
+          chargeLabelNote: '<i class="fas fa-check-circle" style="color:#2e7d32;"></i> No hidden fees',
+          chargeNoteValue: "All equipment included",
+          eventsTitle: "Upcoming Events",
+          event1Name: "Inter‑Club Football Match",
+          event1Loc: "City Stadium, Ground 2",
+          event2Name: "Junior Athletics Meet",
+          event2Loc: "Club Grounds – Track",
+          event3Name: "Annual Swimming Gala",
+          event3Loc: "Aquatic Centre, Colombo",
+          event4Name: "Coaching Clinic with Pros",
+          event4Loc: "Indoor Training Hall",
+          cloudLabelText: "Connect with Google",
+          driveBtnText: "Google Drive",
+          sheetBtnText: "Google Sheet",
+          footerNote: '<i class="fas fa-star"></i> Young Star Sport Club – empowering athletes since 2010 <i class="fas fa-star"></i>'
+        },
+        si: {
+          clubName: "Young Star Sport Club",
+          clubSub: "තරුණ තරු ක්‍රීඩා සමාජය",
+          chargesTitle: "සතිපතා සාමාජික ගාස්තු",
+          chargeLabel1: "යෞවන (වයස 18ට අඩු)",
+          chargeValue1: "රු. 800 <small>/ සතිය</small>",
+          chargeLabel2: "වැඩිහිටි (18+)",
+          chargeValue2: "රු. 1,200 <small>/ සතිය</small>",
+          chargeLabel3: "පවුලේ (වැඩිහිටි 2 + ළමයි 2)",
+          chargeValue3: "රු. 2,800 <small>/ සතිය</small>",
+          chargeLabel4: "වැඩිහිටි පුරවැසි (65+)",
+          chargeValue4: "රු. 600 <small>/ සතිය</small>",
+          chargeLabelNote: '<i class="fas fa-check-circle" style="color:#2e7d32;"></i> සැඟවුණු ගාස්තු නැත',
+          chargeNoteValue: "සියලු උපකරණ ඇතුළත්",
+          eventsTitle: "ඉදිරි උත්සව",
+          event1Name: "අන්තර් සමාජ පාපන්දු තරඟය",
+          event1Loc: "නගර ක්‍රීඩාංගණය, පිටිය 2",
+          event2Name: "බාලක මලල ක්‍රීඩා උත්සවය",
+          event2Loc: "සමාජ ක්‍රීඩාංගණය – ධාවන පථය",
+          event3Name: "වාර්ෂික පිහිනුම් උත්සවය",
+          event3Loc: "ජලජ කේන්ද්‍රය, කොළඹ",
+          event4Name: "වෘත්තීය පුහුණු කඳවුර",
+          event4Loc: "ගෘහස්ථ පුහුණු ශාලාව",
+          cloudLabelText: "ගූගල් සමඟ සම්බන්ධ වන්න",
+          driveBtnText: "ගූගල් ඩ්‍රයිව්",
+          sheetBtnText: "ගූගල් ෂීට්",
+          footerNote: '<i class="fas fa-star"></i> යං ස්ටාර් ක්‍රීඩා සමාජය – 2010 සිට ක්‍රීඩකයින් සවිබල ගන්වයි <i class="fas fa-star"></i>'
+        }
+      };
+
+      // ----- DOM elements -----
+      const langEnBtn = document.getElementById('langEnBtn');
+      const langSiBtn = document.getElementById('langSiBtn');
+      const appCard = document.getElementById('appCard');
+
+      // IDs for text elements to update
+      const clubName = document.getElementById('clubName');
+      const clubSub = document.getElementById('clubSub');
+      const chargesTitle = document.getElementById('chargesTitle');
+      const chargeLabel1 = document.getElementById('chargeLabel1');
+      const chargeValue1 = document.getElementById('chargeValue1');
+      const chargeLabel2 = document.getElementById('chargeLabel2');
+      const chargeValue2 = document.getElementById('chargeValue2');
+      const chargeLabel3 = document.getElementById('chargeLabel3');
+      const chargeValue3 = document.getElementById('chargeValue3');
+      const chargeLabel4 = document.getElementById('chargeLabel4');
+      const chargeValue4 = document.getElementById('chargeValue4');
+      const chargeLabelNote = document.getElementById('chargeLabelNote');
+      const chargeNoteValue = document.getElementById('chargeNoteValue');
+      const eventsTitle = document.getElementById('eventsTitle');
+      const event1Name = document.getElementById('event1Name');
+      const event1Loc = document.getElementById('event1Loc');
+      const event2Name = document.getElementById('event2Name');
+      const event2Loc = document.getElementById('event2Loc');
+      const event3Name = document.getElementById('event3Name');
+      const event3Loc = document.getElementById('event3Loc');
+      const event4Name = document.getElementById('event4Name');
+      const event4Loc = document.getElementById('event4Loc');
+      const cloudLabelText = document.getElementById('cloudLabelText');
+      const driveBtnText = document.getElementById('driveBtnText');
+      const sheetBtnText = document.getElementById('sheetBtnText');
+      const footerNote = document.getElementById('footerNote');
+
+      // ----- helper to set language -----
+      function setLanguage(lang) {
+        const t = translations[lang];
+
+        // club name & sub
+        clubName.childNodes[0].nodeValue = t.clubName + ' ';
+        clubSub.textContent = t.clubSub;
+
+        // charges
+        chargesTitle.textContent = t.chargesTitle;
+        chargeLabel1.textContent = t.chargeLabel1;
+        chargeValue1.innerHTML = t.chargeValue1;
+        chargeLabel2.textContent = t.chargeLabel2;
+        chargeValue2.innerHTML = t.chargeValue2;
+        chargeLabel3.textContent = t.chargeLabel3;
+        chargeValue3.innerHTML = t.chargeValue3;
+        chargeLabel4.textContent = t.chargeLabel4;
+        chargeValue4.innerHTML = t.chargeValue4;
+        chargeLabelNote.innerHTML = t.chargeLabelNote;
+        chargeNoteValue.textContent = t.chargeNoteValue;
+
+        // events
+        eventsTitle.textContent = t.eventsTitle;
+        event1Name.textContent = t.event1Name;
+        event1Loc.textContent = t.event1Loc;
+        event2Name.textContent = t.event2Name;
+        event2Loc.textContent = t.event2Loc;
+        event3Name.textContent = t.event3Name;
+        event3Loc.textContent = t.event3Loc;
+        event4Name.textContent = t.event4Name;
+        event4Loc.textContent = t.event4Loc;
+
+        // cloud
+        cloudLabelText.textContent = t.cloudLabelText;
+        driveBtnText.textContent = t.driveBtnText;
+        sheetBtnText.textContent = t.sheetBtnText;
+
+        // footer
+        footerNote.innerHTML = t.footerNote;
+
+        // toggle active button style
+        if (lang === 'en') {
+          langEnBtn.classList.add('active');
+          langSiBtn.classList.remove('active');
+          appCard.classList.remove('sinhala-active');
+        } else {
+          langSiBtn.classList.add('active');
+          langEnBtn.classList.remove('active');
+          appCard.classList.add('sinhala-active');
+        }
+      }
+
+      // ----- event listeners -----
+      langEnBtn.addEventListener('click', () => setLanguage('en'));
+      langSiBtn.addEventListener('click', () => setLanguage('si'));
+
+      // ----- Google Drive / Sheet connection (demo) -----
+      document.getElementById('driveBtn').addEventListener('click', () => {
+        // Simulate connection to Google Drive
+        const isSinhala = langSiBtn.classList.contains('active');
+        const msg = isSinhala 
+          ? 'ගූගල් ඩ්‍රයිව් සමඟ සම්බන්ධ වෙමින්... (නිරූපණ)'
+          : 'Connecting to Google Drive... (demo)';
+        alert(msg);
+        // In a real app, you would trigger OAuth and Drive API.
+        // For demonstration, we just show a friendly status.
+      });
+
+      document.getElementById('sheetBtn').addEventListener('click', () => {
+        const isSinhala = langSiBtn.classList.contains('active');
+        const msg = isSinhala 
+          ? 'ගූගල් ෂීට් සමඟ සම්බන්ධ වෙමින්... (නිරූපණ)'
+          : 'Connecting to Google Sheets... (demo)';
+        alert(msg);
+        // Real implementation would use Google Sheets API.
+      });
+
+      // optional: initial set (English active by default)
+      setLanguage('en');
+
+      // minor: keep club name first node as text (avoid overwriting span)
+      // We already handle via childNodes[0] in setLanguage.
+      // But initially we need to ensure the structure.
+      // The clubName h2 has text + span. childNodes[0] is the text node before span.
+      // Safe.
+    })();
+  </script>
+
+  <!-- ensure clubName text node works even if whitespace changes -->
+  <!-- also add a small fallback for initial load -->
+</body>
+</html>
